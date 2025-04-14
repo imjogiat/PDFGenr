@@ -7,6 +7,7 @@ pdf_data = pd.read_csv('topics.csv', sep=';')
 # print(f"\n\n{pdf_data}\n\n")
 
 #put the Dataframe object into a dictionary/set that has topic string
+#better way to do it than a nested for loop?
 for index, data in pdf_data.iterrows:
     pass
 
