@@ -8,6 +8,7 @@ pdf_data = pd.read_csv('topics.csv', sep=';')
 
 #Create pdf file object with parameters defined in the implem library file
 refbook_pdf = FPDF(orientation='P', unit= 'mm', format='A4')
+refbook_pdf.set_auto_page_break(auto=False, margin=0)
 
 #put the Dataframe object into a dictionary/set that has topic string
 #better way to do it than a nested for loop?
@@ -19,6 +20,23 @@ for index, row in pdf_data.iterrows():
     refbook_pdf.cell(w=0, h=12, txt=row['Topic'], 
                 align='L', ln=1)
     refbook_pdf.line(10,25,210,25)
+
+
+    refbook_pdf.ln(260)
+    refbook_pdf.set_font(family='Times', style='B', size=8)
+    refbook_pdf.set_text_color(180,180,180)
+    refbook_pdf.cell(w=0, h=12, txt=row['Topic'], 
+                align='L', ln=1)
+
+
+    for i in range(row["Pages"]-1):
+        refbook_pdf.add_page()
+
+        refbook_pdf.ln(275)
+        refbook_pdf.set_font(family='Times', style='B', size=8)
+        refbook_pdf.set_text_color(180,180,180)
+        refbook_pdf.cell(w=0, h=12, txt=row['Topic'], 
+                align='L', ln=1)
 
 
 refbook_pdf.output("refbook_pdf.pdf")
